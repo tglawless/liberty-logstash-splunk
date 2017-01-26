@@ -1,1 +1,1 @@
-# liberty-logstah-splunk
+# Sending WebSphere Liberty Logs to Splunk
