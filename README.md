@@ -25,6 +25,11 @@ docker-compose up
 
 Within a few seconds of the containers starting up, the log entries from the Liberty server will be visible in Splunk for search and custom dashboards.
 
+***NOTE: Remember to generate your own SSL certificates for Logstash if you are going to reuse this example for something real.***
+
 ## Alternatives
 
 Once the log entries are streamed into Logstash, Splunk is just one option for their final destination.  They could easily be sent to Elasticsearch if you are running an ELK stack or other SaaS solutions like New Relic, Datadog or Loggly just to name a few. 
+
+
+
