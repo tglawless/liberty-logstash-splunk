@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  logstash:
+     build:
+       context: .
+       dockerfile: ./logstash/Dockerfile
+       args:
+         - SPLUNK_HOST=${SPLUNK_HOST}
+     command: -f /etc/logstash/conf.d --config.reload.automatic
+     environment:
+       - SPLUNK_HOST=${SPLUNK_HOST}
+       - SPLUNK_TOKEN=${SPLUNK_TOKEN}
+     volumes:
+       - ./logstash/conf.d:/etc/logstash/conf.d
+     ports:
+       - "9600:9600"
+       - "5000:5000"
+     networks:
+       - logging
+  websphere-liberty:
+     build:
+       context: .
+       dockerfile: ./websphere-liberty/Dockerfile
+     environment:
+       - CONTAINER_HOST=liberty-splunk-logging.example.com
+       - CONTAINER_NAME=wlp_solunk_log_demo
+     volumes:
+       - ./websphere-liberty/server.xml:/opt/ibm/wlp/usr/servers/ServletSample/server.xml
+     ports:
+       - "9080:9080"
+     networks:
+       - logging
+     depends_on:
+       - logstash
+
+networks:
+  logging:
