@@ -33,11 +33,11 @@ All Rights Reserved. Licensed Materials - Property of IBM.
 
 	<ssl id="logstash-ssl" trustStoreRef="defaultTrustStore" keyStoreRef="defaultKeyStore" />
 
-    <logstashCollector 
-	 	source="message,trace,ffdc" 
-        hostName="logstash" 
-        port="5000" 
-        sslRef="logstash-ssl"
-    />
+     	<logstashCollector 
+		source="message,trace,ffdc" 
+        	hostName="logstash" 
+        	port="5000" 
+        	sslRef="logstash-ssl"
+    	/>
 
 </server>
